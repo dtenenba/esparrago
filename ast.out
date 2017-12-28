@@ -1,0 +1,147 @@
+     0  *ast.File {
+     1  .  Package: testdata/src0.go:1:1
+     2  .  Name: *ast.Ident {
+     3  .  .  NamePos: testdata/src0.go:1:9
+     4  .  .  Name: "main"
+     5  .  }
+     6  .  Decls: []ast.Decl (len = 3) {
+     7  .  .  0: *ast.GenDecl {
+     8  .  .  .  TokPos: testdata/src0.go:3:1
+     9  .  .  .  Tok: import
+    10  .  .  .  Lparen: -
+    11  .  .  .  Specs: []ast.Spec (len = 1) {
+    12  .  .  .  .  0: *ast.ImportSpec {
+    13  .  .  .  .  .  Path: *ast.BasicLit {
+    14  .  .  .  .  .  .  ValuePos: testdata/src0.go:3:8
+    15  .  .  .  .  .  .  Kind: STRING
+    16  .  .  .  .  .  .  Value: "\"C\""
+    17  .  .  .  .  .  }
+    18  .  .  .  .  .  EndPos: -
+    19  .  .  .  .  }
+    20  .  .  .  }
+    21  .  .  .  Rparen: -
+    22  .  .  }
+    23  .  .  1: *ast.FuncDecl {
+    24  .  .  .  Doc: *ast.CommentGroup {
+    25  .  .  .  .  List: []*ast.Comment (len = 1) {
+    26  .  .  .  .  .  0: *ast.Comment {
+    27  .  .  .  .  .  .  Slash: testdata/src0.go:5:1
+    28  .  .  .  .  .  .  Text: "//export DoubleIt"
+    29  .  .  .  .  .  }
+    30  .  .  .  .  }
+    31  .  .  .  }
+    32  .  .  .  Name: *ast.Ident {
+    33  .  .  .  .  NamePos: testdata/src0.go:6:6
+    34  .  .  .  .  Name: "DoubleIt"
+    35  .  .  .  .  Obj: *ast.Object {
+    36  .  .  .  .  .  Kind: func
+    37  .  .  .  .  .  Name: "DoubleIt"
+    38  .  .  .  .  .  Decl: *(obj @ 23)
+    39  .  .  .  .  }
+    40  .  .  .  }
+    41  .  .  .  Type: *ast.FuncType {
+    42  .  .  .  .  Func: testdata/src0.go:6:1
+    43  .  .  .  .  Params: *ast.FieldList {
+    44  .  .  .  .  .  Opening: testdata/src0.go:6:14
+    45  .  .  .  .  .  List: []*ast.Field (len = 1) {
+    46  .  .  .  .  .  .  0: *ast.Field {
+    47  .  .  .  .  .  .  .  Names: []*ast.Ident (len = 1) {
+    48  .  .  .  .  .  .  .  .  0: *ast.Ident {
+    49  .  .  .  .  .  .  .  .  .  NamePos: testdata/src0.go:6:15
+    50  .  .  .  .  .  .  .  .  .  Name: "x"
+    51  .  .  .  .  .  .  .  .  .  Obj: *ast.Object {
+    52  .  .  .  .  .  .  .  .  .  .  Kind: var
+    53  .  .  .  .  .  .  .  .  .  .  Name: "x"
+    54  .  .  .  .  .  .  .  .  .  .  Decl: *(obj @ 46)
+    55  .  .  .  .  .  .  .  .  .  }
+    56  .  .  .  .  .  .  .  .  }
+    57  .  .  .  .  .  .  .  }
+    58  .  .  .  .  .  .  .  Type: *ast.Ident {
+    59  .  .  .  .  .  .  .  .  NamePos: testdata/src0.go:6:17
+    60  .  .  .  .  .  .  .  .  Name: "int"
+    61  .  .  .  .  .  .  .  }
+    62  .  .  .  .  .  .  }
+    63  .  .  .  .  .  }
+    64  .  .  .  .  .  Closing: testdata/src0.go:6:20
+    65  .  .  .  .  }
+    66  .  .  .  .  Results: *ast.FieldList {
+    67  .  .  .  .  .  Opening: -
+    68  .  .  .  .  .  List: []*ast.Field (len = 1) {
+    69  .  .  .  .  .  .  0: *ast.Field {
+    70  .  .  .  .  .  .  .  Type: *ast.Ident {
+    71  .  .  .  .  .  .  .  .  NamePos: testdata/src0.go:6:22
+    72  .  .  .  .  .  .  .  .  Name: "int"
+    73  .  .  .  .  .  .  .  }
+    74  .  .  .  .  .  .  }
+    75  .  .  .  .  .  }
+    76  .  .  .  .  .  Closing: -
+    77  .  .  .  .  }
+    78  .  .  .  }
+    79  .  .  .  Body: *ast.BlockStmt {
+    80  .  .  .  .  Lbrace: testdata/src0.go:6:26
+    81  .  .  .  .  List: []ast.Stmt (len = 1) {
+    82  .  .  .  .  .  0: *ast.ReturnStmt {
+    83  .  .  .  .  .  .  Return: testdata/src0.go:7:2
+    84  .  .  .  .  .  .  Results: []ast.Expr (len = 1) {
+    85  .  .  .  .  .  .  .  0: *ast.BinaryExpr {
+    86  .  .  .  .  .  .  .  .  X: *ast.Ident {
+    87  .  .  .  .  .  .  .  .  .  NamePos: testdata/src0.go:7:9
+    88  .  .  .  .  .  .  .  .  .  Name: "x"
+    89  .  .  .  .  .  .  .  .  .  Obj: *(obj @ 51)
+    90  .  .  .  .  .  .  .  .  }
+    91  .  .  .  .  .  .  .  .  OpPos: testdata/src0.go:7:11
+    92  .  .  .  .  .  .  .  .  Op: *
+    93  .  .  .  .  .  .  .  .  Y: *ast.BasicLit {
+    94  .  .  .  .  .  .  .  .  .  ValuePos: testdata/src0.go:7:13
+    95  .  .  .  .  .  .  .  .  .  Kind: INT
+    96  .  .  .  .  .  .  .  .  .  Value: "2"
+    97  .  .  .  .  .  .  .  .  }
+    98  .  .  .  .  .  .  .  }
+    99  .  .  .  .  .  .  }
+   100  .  .  .  .  .  }
+   101  .  .  .  .  }
+   102  .  .  .  .  Rbrace: testdata/src0.go:8:1
+   103  .  .  .  }
+   104  .  .  }
+   105  .  .  2: *ast.FuncDecl {
+   106  .  .  .  Name: *ast.Ident {
+   107  .  .  .  .  NamePos: testdata/src0.go:10:6
+   108  .  .  .  .  Name: "main"
+   109  .  .  .  .  Obj: *ast.Object {
+   110  .  .  .  .  .  Kind: func
+   111  .  .  .  .  .  Name: "main"
+   112  .  .  .  .  .  Decl: *(obj @ 105)
+   113  .  .  .  .  }
+   114  .  .  .  }
+   115  .  .  .  Type: *ast.FuncType {
+   116  .  .  .  .  Func: testdata/src0.go:10:1
+   117  .  .  .  .  Params: *ast.FieldList {
+   118  .  .  .  .  .  Opening: testdata/src0.go:10:10
+   119  .  .  .  .  .  Closing: testdata/src0.go:10:11
+   120  .  .  .  .  }
+   121  .  .  .  }
+   122  .  .  .  Body: *ast.BlockStmt {
+   123  .  .  .  .  Lbrace: testdata/src0.go:10:13
+   124  .  .  .  .  Rbrace: testdata/src0.go:10:14
+   125  .  .  .  }
+   126  .  .  }
+   127  .  }
+   128  .  Scope: *ast.Scope {
+   129  .  .  Objects: map[string]*ast.Object (len = 2) {
+   130  .  .  .  "DoubleIt": *(obj @ 35)
+   131  .  .  .  "main": *(obj @ 109)
+   132  .  .  }
+   133  .  }
+   134  .  Imports: []*ast.ImportSpec (len = 1) {
+   135  .  .  0: *(obj @ 12)
+   136  .  }
+   137  .  Unresolved: []*ast.Ident (len = 2) {
+   138  .  .  0: *(obj @ 58)
+   139  .  .  1: *(obj @ 70)
+   140  .  }
+   141  .  Comments: []*ast.CommentGroup (len = 1) {
+   142  .  .  0: *(obj @ 24)
+   143  .  }
+   144  }
+PASS
+ok  	github.com/dtenenba/foreign	0.014s
