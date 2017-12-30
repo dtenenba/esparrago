@@ -20,19 +20,20 @@ func helper(t *testing.T, expectedErr interface{}, code string) {
 		t.Error("Expected error", expectedErrType.String(), "but got",
 			actualErrType.String(), "with message", err)
 	}
-
 }
 
 func Test_getExportedFunctions(t *testing.T) {
 	t.Run("noFunctions", func(t *testing.T) {
 		helper(t, badImportError{}, "package main")
 	})
+
 	t.Run("nonexistentfile", func(t *testing.T) {
 		_, err := getExportedFunctions("thisfiledoesnotexist", nil)
 		if err == nil {
 			t.Error("Expected failure for nonexistent file.")
 		}
 	})
+
 	t.Run("fromFile", func(t *testing.T) {
 		res, err := getExportedFunctions("testdata/src0.go", nil)
 		if err != nil {
@@ -43,6 +44,7 @@ func Test_getExportedFunctions(t *testing.T) {
 			}
 		}
 	})
+
 	t.Run("badExportComment", func(t *testing.T) {
 		helper(t, badExportError{}, `
 	package main
@@ -53,6 +55,7 @@ func Test_getExportedFunctions(t *testing.T) {
 	func funko() {}
 				`)
 	})
+
 	t.Run("hasReceiver", func(t *testing.T) {
 		helper(t, receiverError{}, `
 package main
@@ -64,6 +67,7 @@ func (m int) hasreceiver() {}
 			`)
 
 	})
+
 	t.Run("multipleReturnValues", func(t *testing.T) {
 		helper(t, multipleReturnValuesError{}, `
 package main
@@ -76,11 +80,13 @@ func multipleitemsreturned() (int, error) {
 }
 			`)
 	})
+
 	t.Run("wrongPackageName", func(t *testing.T) {
 		helper(t, wrongPackageError{}, `
 package hello
 			`)
 	})
+
 	t.Run("nonEmptyMainFunction", func(t *testing.T) {
 		helper(t, nonEmptyMainFunctionError{}, `
 package main
@@ -92,6 +98,7 @@ func main() {
 }
 			`)
 	})
+
 	t.Run("noMainFunction", func(t *testing.T) {
 		helper(t, noMainFunctionError{}, `
 package main
@@ -104,6 +111,7 @@ func foo(i int) {
 }
 			`)
 	})
+
 	t.Run("noFunctionsToExport", func(t *testing.T) {
 		helper(t, noFunctionsToExportError{}, `
 package main
@@ -117,6 +125,7 @@ func main(){}
 
 func Test_generateCcode(t *testing.T) {
 	t.Run("someName", func(t *testing.T) {
+		// FIXME implement....
 	})
 }
 

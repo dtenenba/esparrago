@@ -47,6 +47,8 @@ func getExportedFunctions(filename string, src interface{}) (
 	// FIXME make this work with `go generate`; be sure and handle the
 	// `go generate` comment line in source files we process, don't associate it with
 	// a function (like an export comment).
+	// FIXME exported functions must have, at minimum, a (single) return
+	// value and/or at least one argument. It's an error to have neither.
 	fset := token.NewFileSet() // positions are relative to fset
 
 	f, err := parser.ParseFile(fset, filename, src, parser.ParseComments)
@@ -89,7 +91,8 @@ func getExportedFunctions(filename string, src interface{}) (
 		fmt.Println("doc", fn.Doc)
 		if fn.Name.Name == "main" {
 			if len(fn.Body.List) > 0 {
-				return nil, nonEmptyMainFunctionError{errors.New("main function must be empty")}
+				return nil,
+					nonEmptyMainFunctionError{errors.New("main function must be empty")}
 			}
 			foundMainFunction = true
 		}
@@ -102,18 +105,14 @@ func getExportedFunctions(filename string, src interface{}) (
 					if exportedFunc != fn.Name.Name {
 						return nil,
 							badExportError{
-								fmt.Errorf("Function name in comment (%s) does not match function name in function (%s)\n",
+								fmt.Errorf(
+									"Function name in comment (%s) does not match function name in function (%s)\n",
 									exportedFunc, fn.Name.Name)}
-						// return nil, fmt.Errorf("Function name in comment (%s) does not match function name in function (%s)\n",
-						// 	exportedFunc, fn.Name.Name)
 					}
 					if fn.Recv != nil {
 						return nil, receiverError{
 							errors.New("Can't export methods to foreign languages, only functions.")}
 					}
-					// TODO make sure function is either void or returns only one thing
-					// using fn.Type.Results.NumFields()
-
 					if fn.Type.Results != nil {
 						fmt.Println("output is", fn.Type.Results.List)
 						for _, field := range fn.Type.Results.List {
