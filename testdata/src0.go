@@ -6,3 +6,5 @@ import "C"
 func DoubleIt(x int) int {
 	return x * 2
 }
+
+func main() {}
