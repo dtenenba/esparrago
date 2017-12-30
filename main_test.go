@@ -131,8 +131,8 @@ func Test_generateCcode(t *testing.T) {
 
 func Test_main(t *testing.T) {
 	oldArgs := os.Args
-	os.Setenv("TESTING_FOREIGN", "true")
-	defer func() { os.Unsetenv("TESTING_FOREIGN") }()
+	os.Setenv("TESTING_ESPARRAGO", "true")
+	defer func() { os.Unsetenv("TESTING_ESPARRAGO") }()
 	defer func() { os.Args = oldArgs }()
 
 	t.Run("withValidArg", func(t *testing.T) {
@@ -143,18 +143,18 @@ func Test_main(t *testing.T) {
 	t.Run("withNonexistentFile", func(t *testing.T) {
 		os.Args = []string{"cmd", "a_file_that_does_not_exist"}
 		main()
-		if os.Getenv("FOREIGN_EXIT_CODE") != "1" {
+		if os.Getenv("ESPARRAGO_EXIT_CODE") != "1" {
 			t.Error("Expected exit with code 1, got.",
-				os.Getenv("FOREIGN_EXIT_CODE"))
+				os.Getenv("ESPARRAGO_EXIT_CODE"))
 		}
 	})
 
 	t.Run("withNoArguments", func(t *testing.T) {
 		os.Args = []string{"cmd"}
 		main()
-		if os.Getenv("FOREIGN_EXIT_CODE") != "1" {
+		if os.Getenv("ESPARRAGO_EXIT_CODE") != "1" {
 			t.Error("Expected exit with code 1, got.",
-				os.Getenv("FOREIGN_EXIT_CODE"))
+				os.Getenv("ESPARRAGO_EXIT_CODE"))
 		}
 	})
 }

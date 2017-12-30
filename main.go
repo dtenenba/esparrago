@@ -111,7 +111,7 @@ func getExportedFunctions(filename string, src interface{}) (
 					}
 					if fn.Recv != nil {
 						return nil, receiverError{
-							errors.New("Can't export methods to foreign languages, only functions.")}
+							errors.New("Can't export methods to other languages, only functions.")}
 					}
 					if fn.Type.Results != nil {
 						fmt.Println("output is", fn.Type.Results.List)
@@ -153,11 +153,11 @@ func generateCcode(exportedFuncs []*ast.FuncDecl) {
 }
 
 func exit(exitCode int) int {
-	if _, ok := os.LookupEnv("TESTING_FOREIGN"); ok {
-		os.Setenv("FOREIGN_EXIT_CODE", strconv.Itoa(exitCode))
-	} else { // These two lines can't be covered by tests
-		os.Exit(exitCode) // without a lot of hassle.
-	}
+	if _, ok := os.LookupEnv("TESTING_ESPARRAGO"); ok {
+		os.Setenv("ESPARRAGO_EXIT_CODE", strconv.Itoa(exitCode))
+	} else { // These three lines can't be covered by tests
+		os.Exit(exitCode) // without a lot of
+	} // hassle.
 	return exitCode
 }
 
