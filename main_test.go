@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io/ioutil"
 	"os"
 	"reflect"
 	"testing"
@@ -121,6 +122,19 @@ import "C"
 func main(){}
 			`)
 	})
+
+	t.Run("noArgsOrReturnValues", func(t *testing.T) {
+		helper(t, noArgsOrReturnValuesError{}, `
+package main
+
+import "C"
+
+//export foo
+func foo(){}
+
+func main(){}
+			`)
+	})
 }
 
 func Test_generateCcode(t *testing.T) {
@@ -136,12 +150,23 @@ func Test_main(t *testing.T) {
 	defer func() { os.Args = oldArgs }()
 
 	t.Run("withValidArg", func(t *testing.T) {
-		os.Args = []string{"cmd", "testdata/src0.go"}
+		outfile, err := ioutil.TempFile("", "src0.c")
+		if err != nil {
+			t.Log("Couldn't open test output file.")
+			t.Fail()
+		}
+		outfileName := outfile.Name()
+		defer os.Remove(outfileName)
+		if err := outfile.Close(); err != nil {
+			t.Log("Couldn't close test output file.")
+			t.Fail()
+		}
+		os.Args = []string{"cmd", "testdata/src0.go", outfileName}
 		main()
 	})
 
 	t.Run("withNonexistentFile", func(t *testing.T) {
-		os.Args = []string{"cmd", "a_file_that_does_not_exist"}
+		os.Args = []string{"cmd", "a_file_that_does_not_exist", "nonexistent"}
 		main()
 		if os.Getenv("ESPARRAGO_EXIT_CODE") != "1" {
 			t.Error("Expected exit with code 1, got.",

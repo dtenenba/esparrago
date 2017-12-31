@@ -1,6 +1,6 @@
 # Espárrago - simplifying R and Go integration
 
-Espárrago means asparagus. Espárrago has R and Go in it.
+Espárrago means asparagus. Espá**r**ra**go** has R and Go in it.
 Espárrago helps connect R (rstats) and Go (golang).
 
 ## Overview
@@ -10,7 +10,7 @@ blog posts and GitHub repositories (see [resources section](#resources))
 that it's possible to call Go functions from R.
 
 The process requires writing a little bit of C code to bridge the two
-together. Espárrago automates the writing of that C code, so you don't have to.
+together. Espárrago writes that C code, so you don't have to.
 
 
 <div id="resources"></div>
