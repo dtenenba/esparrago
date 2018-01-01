@@ -14,6 +14,7 @@ together. Espárrago writes that C code, so you don't have to.
 
 
 <div id="resources"></div>
+
 ## Resources
 
 From Romain François:
