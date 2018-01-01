@@ -65,6 +65,7 @@ type ExportedFunction struct {
 type Argument struct {
 	ArgType string
 	ArgName string
+	CName   string
 }
 
 type badExportError struct{ error }
@@ -204,6 +205,19 @@ func getWrappedCFunction(goReturnType string) string {
 	}
 	panic(fmt.Sprintf("Don't know the wrapped C function for return type %s.",
 		goReturnType))
+
+}
+
+func getCRepresentationOfArgument(arg Argument) string {
+	switch arg.ArgType {
+	case "int":
+		return fmt.Sprintf("INTEGER(%s)[0]", arg.ArgName)
+	}
+	panic(fmt.Sprintf("Don't know the C representation for argument type %s.",
+		arg.ArgType))
+}
+
+func transformArgument(arg *Argument) {
 
 }
 
